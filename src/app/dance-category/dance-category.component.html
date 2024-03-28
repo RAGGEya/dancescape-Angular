@@ -1,1 +1,63 @@
-<p>dance-category works!</p>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Raleway:300,400,500,600,700,800,900" rel="stylesheet"> 
+        <title>JustDance</title>
+        <link rel="icon" href="favicon.png"/>
+        <!-- Bootstrap core CSS -->
+        <link href="/assets/FrontOffice/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/assets/FrontOffice/css/style.css" rel="stylesheet">
+        <link href="/assets/FrontOffice/css/responsive.css" rel="stylesheet">
+        <link href="/assets/FrontOffice/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/FrontOffice/fonts/website-font/stylesheet.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/FrontOffice/css/mislider.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/FrontOffice/css/mislider-custom.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/assets/FrontOffice/css/animate.css">
+        <link rel="stylesheet" href="/assets/FrontOffice/css/lightbox.min.css">
+        <app-header-front></app-header-front>
+
+        <script src="/assets/FrontOffice/js/jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/scrolling-nav.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/custom.js" type="text/javascript"></script>
+    </head>
+<body>
+
+
+<h1>Dance Category Table</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Category Name</th>
+      <th> Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let category of danceCategories">
+      <td>{{ category.categorieName }}</td>
+      <td>{{ category.DCdescription }}</td>
+
+    </tr>
+  </tbody>
+</table>
+
+<h2>Add Dance Category</h2>
+<form [formGroup]="DanceForm" (ngSubmit)="addDanceCat()">
+  <div class="form-group">
+    <label for="categorieName">Name:</label>
+    <input type="text" id="categorieName" formControlName="categorieName" class="form-control" placeholder="Enter category name">
+  </div>
+  <div class="form-group">
+    <label for="DCdescription">Description:</label>
+    <input type="text" id="DCdescription" formControlName="DCdescription" class="form-control" placeholder="Enter description">
+  </div>
+  <!-- Add more form controls as needed -->
+  <button type="submit" class="btn btn-success">Confirm </button>
+  <button type="button" (click)="cancelEdit()" class="btn btn-secondary">Cancel</button>
+</form>
+

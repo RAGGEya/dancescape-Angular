@@ -1,1 +1,71 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Poiret+One|Raleway:300,400,500,600,700,800,900" rel="stylesheet"> 
+        <title>JustDance</title>
+        <link rel="icon" href="favicon.png"/>
+        <!-- Bootstrap core CSS -->
+        <link href="/assets/FrontOffice/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Custom styles for this template -->
+        <link href="/assets/FrontOffice/css/style.css" rel="stylesheet">
+        <link href="/assets/FrontOffice/css/responsive.css" rel="stylesheet">
+        <link href="/assets/FrontOffice/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/FrontOffice/fonts/website-font/stylesheet.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/FrontOffice/css/mislider.css" rel="stylesheet" type="text/css" />
+        <link href="/assets/FrontOffice/css/mislider-custom.css" rel="stylesheet" type="text/css" />
+        <link rel="stylesheet" href="/assets/FrontOffice/css/animate.css">
+        <link rel="stylesheet" href="/assets/FrontOffice/css/lightbox.min.css">
+        <app-header-front></app-header-front>
 
+        <script src="/assets/FrontOffice/js/jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/scrolling-nav.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
+        <script src="/assets/FrontOffice/js/custom.js" type="text/javascript"></script>
+    </head>
+<body>
+
+<h1>Event Table</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Event Name</th>
+      <th>Venue</th>
+      <th>Event Date</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of events">
+      <td>{{ event.EventName }}</td>
+      <td>{{ event.Venue }}</td>
+      <td>{{ event.EventDate }}</td>
+      <td>
+        <button (click) = "editEvent(event)" class=" btn btn-primary">Edit </button>
+      </td>    </tr>
+  </tbody>
+</table>
+
+<h2>Add Event</h2>
+<form [formGroup]="EventForm" (ngSubmit)="editingEvent ? updateEvent() : addEvent()">
+  <div class="form-group">
+    <label for="EventName">Event Name:</label>
+    <input type="text" id="EventName" formControlName="EventName" class="form-control" placeholder="Enter event name">
+  </div>
+  <div class="form-group">
+    <label for="Venue">Venue:</label>
+    <input type="text" id="Venue" formControlName="Venue" class="form-control" placeholder="Enter venue">
+  </div>
+  <div class="form-group">
+    <label for="EventDate">Event Date:</label>
+    <input type="date" id="EventDate" formControlName="EventDate" class="form-control" placeholder="Select event date">
+  </div>
+  <!-- Add more form controls as needed -->
+  <button type="submit" class="btn btn-success">{{editingEvent ? 'Edit' : 'Add'}}</button>
+  <button type="button" (click)="cancelEdit()" class="btn btn-secondary">Cancel</button>
+</form>
+
+</body>
+</html>
