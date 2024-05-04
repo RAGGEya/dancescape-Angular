@@ -7,7 +7,7 @@ import { Logistics } from '../Models/logistic';
   providedIn: 'root'
 })
 export class LogisticService {
-  private baseUrl : string = 'http://localhost:5016/DanceScape/Crud/Logistic/';
+  private baseUrl : string = 'http://localhost:5016/DanceScape/Crud/Logistics/';
 
   constructor(private http:HttpClient) { }
 
@@ -20,7 +20,7 @@ export class LogisticService {
   }
 
   deleteLogistic(logisticId: number): Observable<void> {
-    return this.http.delete<void>(this.baseUrl + 'deleteLogistics=' + logisticId);
+    return this.http.delete<void>(this.baseUrl + 'deleteLogitics?id=' + logisticId);
   }
 
 }
