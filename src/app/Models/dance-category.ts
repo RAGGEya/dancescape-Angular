@@ -1,5 +1,5 @@
 export class DanceCategory {
-    CategorieId! : number;
-    categorieName! : String;
-    DCdescription! : String;
+    categorieId! : number;
+    categoryName! : String;
+    dcDescription! : String;
 }

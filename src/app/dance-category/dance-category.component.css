@@ -1,0 +1,161 @@
+.category-item {
+    background-color: #000000;
+    color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 30px;
+    font-size: 18px;
+    line-height: 1.5;
+    transition: all 0.3s ease;
+    position: relative;
+    filter: blur(5px);
+}
+
+.category-item h3 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.category-item p {
+    margin-bottom: 8px;
+}
+
+.category-details {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.category-item:hover {
+    filter: none;
+    transform: scale(1.05);
+}
+
+.category-item:hover .category-details {
+    opacity: 1;
+}
+
+.category-section {
+    background-color: #8B0000;
+    padding: 20px;
+}
+
+.category-actions {
+    margin-top: 15px;
+}
+
+.category-actions button {
+    font-size: 16px;
+    padding: 8px 12px;
+}
+
+.category-actions button + button {
+    margin-left: 10px;
+}
+
+.category-actions button:hover {
+    opacity: 0.8;
+}
+
+.btn-edit {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: black;
+    border: none;
+}
+
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+.about {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.about-content {
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.about-content h1 {
+    font-size: 36px;
+    margin-bottom: 30px;
+    color: #333;
+}
+
+.add-edit-event {
+    margin-bottom: 30px;
+}
+
+.add-edit-event h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    font-size: 18px;
+    color: #555;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.buttons {
+    text-align: right;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success {
+    background-color: #6c757d; /* Same color as Cancel button */
+    color: #fff;
+    margin-right: 10px; /* Add right margin to space out buttons */
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+.btn:hover {
+    opacity: 0.8;
+}
+
+.about-image img {
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+.custom-input {
+    font-size: 10px; /* Adjust font size */
+    border-radius: 5px; /* Add some border radius for rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow for depth */
+    transition: all 0.3s ease; /* Add transition effect for hover/focus */
+}
+
+.custom-input:focus {
+    border-color: #66afe9; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Enhance box shadow on focus */
+}

@@ -18,7 +18,12 @@ export class DanceCategoryService {
   }
   
 
-  addDanceCat(dc : DanceCategory): Observable<DanceCategory>{
+  addMyDanceCat(dc : DanceCategory): Observable<DanceCategory>{
     return this.http.post<DanceCategory>(this.baseUrl + 'addOrUpdateDanceCat' , dc)
+  }
+
+  
+  deleteCategory(id : number): Observable<void> {
+    return this.http.delete<void>(this.baseUrl + 'deleteDanceCat?id=' + id);
   }
 }

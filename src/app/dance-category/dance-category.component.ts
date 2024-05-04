@@ -1,58 +1,90 @@
 import { Component, OnInit } from '@angular/core';
-import { DanceCategory } from '../Models/dance-category';
-import { DanceCategoryService } from '../Services/dance-category.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DanceCategoryService } from '../Services/dance-category.service';
+import { DanceCategory } from '../Models/dance-category';
 
 @Component({
   selector: 'app-dance-category',
   templateUrl: './dance-category.component.html',
   styleUrls: ['./dance-category.component.css']
 })
-export class DanceCategoryComponent implements OnInit{
-  danceCategories : DanceCategory[] = [];
-
-  DanceForm: FormGroup; 
-
-  constructor(private fb: FormBuilder,private DCService: DanceCategoryService) {
-
-    this.DanceForm = this.fb.group({
-
-      categorieName: ['', Validators.required],
-      DCdescription: ['', Validators.required],
-    }); 
-  }
-
-
-
-  addDanceCat()  {
-
-    if (this.DanceForm.valid) {
-      const newDc : DanceCategory = this.DanceForm.value as DanceCategory;
-      console.log('New d Object:', newDc);
-    
-      this.DCService.addDanceCat(newDc). subscribe(  () : void => {  
-          this. loadDanceCat();
-        this.DanceForm.reset(); });
-        alert("DC  added !");
-    
-    } else {
-    alert("DC not added !");
-    }}
-    
-
-    cancelEdit() : void{
-      this.DanceForm.reset();
-   }
+export class DanceCategoryComponent implements OnInit {
   
+  danceCategories: DanceCategory[] = [];
+  editingCategory: DanceCategory | null = null;
+  categoryForm: FormGroup;
 
-  loadDanceCat() : void{
-    this.DCService.findAllDanceCat().subscribe(
-      (danceCategories: DanceCategory[]) => {
-        this.danceCategories = danceCategories;
-      });
+  constructor(private fb: FormBuilder, private danceCategoryService: DanceCategoryService) {
+    this.categoryForm = this.fb.group({
+      categoryName: ['', Validators.required],
+      dcDescription: ['', Validators.required]
+    });
   }
 
- ngOnInit() : void{
-this.loadDanceCat();
-}
+  loadCategories(): void {
+    this.danceCategoryService.findAllDanceCat().subscribe(
+      (categories: DanceCategory[]) => {
+        this.danceCategories = categories;
+      }
+    );
+  }
+
+  ngOnInit(): void {
+    this.loadCategories();
+  }
+
+  addCategory() {
+    if (this.categoryForm.valid) {
+      const newCategory: DanceCategory = this.categoryForm.value as DanceCategory;
+      console.log('New Category Object:', newCategory);
+      this.danceCategoryService.addMyDanceCat(newCategory).subscribe(() => {
+        this.loadCategories();
+        this.categoryForm.reset();
+        alert("Category added successfully!");
+      });
+    } else {
+      alert("Category not added!");
+    }
+  }
+
+  cancelEdit(): void {
+    this.categoryForm.reset();
+  }
+
+  deleteCategory(categoryId: number): void {
+    this.danceCategoryService.deleteCategory(categoryId).subscribe(() => {
+      this.loadCategories();
+    });
+  }
+
+  updateCategory(): void {
+    if (this.editingCategory && this.categoryForm.valid) {
+      const updatedCategory: DanceCategory = {
+        ...this.editingCategory,
+        ...this.categoryForm.value
+      } as DanceCategory;
+      this.danceCategoryService.addMyDanceCat(updatedCategory).subscribe(() => {
+        this.loadCategories();
+        this.categoryForm.reset();
+        this.editingCategory = null;
+      });
+    }
+  }
+
+  editCategory(category: DanceCategory): void {
+    this.editingCategory = category;
+    this.categoryForm.patchValue({
+      categoryName: category.categoryName,
+      dcDescription: category.dcDescription
+    }
+  )
+
+  ;this.scrollToEditForm();
+  }
+  scrollToEditForm() {
+    const editForm = document.getElementById('editEventForm');
+    if (editForm) {
+        editForm.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
 }

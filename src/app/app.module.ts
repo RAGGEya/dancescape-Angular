@@ -15,6 +15,7 @@ import { DanceCategoryComponent } from './dance-category/dance-category.componen
 import {HttpClientModule} from "@angular/common/http";
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
+import { EmailSenderComponent } from './email-sender/email-sender.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     SideBarBackComponent,
     FooterBackComponent,
     EventComponent,
-    DanceCategoryComponent
+    DanceCategoryComponent,
+    EmailSenderComponent
   ],
   imports: [
     BrowserModule,

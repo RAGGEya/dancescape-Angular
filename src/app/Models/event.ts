@@ -1,7 +1,7 @@
 export class Event {
-    EventId?: number;
-    EventName? : String;
-    Venue? : String;
-    EventDate? : Date;
+    eventId!: number;
+    eventName! : String;
+    venue! : String;
+    eventDate! : Date;
     
 }

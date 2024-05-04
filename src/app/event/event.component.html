@@ -1,11 +1,13 @@
+
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://fonts.googleapis.com/css?family=Poiret+One|Raleway:300,400,500,600,700,800,900" rel="stylesheet"> 
-        <title>JustDance</title>
-        <link rel="icon" href="favicon.png"/>
+        <title>DanseScape</title>
+        <link rel="icon" href="/assets/FrontOffice/favicon.png"/>
         <!-- Bootstrap core CSS -->
         <link href="/assets/FrontOffice/css/bootstrap.min.css" rel="stylesheet">
         <!-- Custom styles for this template -->
@@ -24,48 +26,425 @@
         <script src="/assets/FrontOffice/js/scrolling-nav.js" type="text/javascript"></script>
         <script src="/assets/FrontOffice/js/lightbox-plus-jquery.min.js" type="text/javascript"></script>
         <script src="/assets/FrontOffice/js/custom.js" type="text/javascript"></script>
+
+        
     </head>
-<body>
+    <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+        <header>
+            <nav class="navbar navbar-default navbar-fixed-top">
+                <div class="container">
+                    <div class="navigation-bar">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="/assets/FrontOffice/myNavbar">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>                        
+                            </button>
+                            <a class="navbar-brand" href="/assets/FrontOffice/home.html">DanceScape</a>
+                        </div>
+                        <div class="collapse navbar-collapse" id="myNavbar">
+                            <ul class="nav navbar-nav navbar-right">
+                              <li> <a routerLink="/events">Events</a></li>                               
+            
+                                <li><a routerLink="/DanceCat">Dance Categories</a></li>
+                                <li><a href="#classes">Classes</a></li>
+                                <li><a href="#plan">plans</a></li>
+                                <li><a href="#instructors">Instructors</a></li>
+                                <li><a href="#gallery">Gallery</a></li> 
+                                <li><a href="#testimonial">Testimonial</a></li> 
+                                <li><a href="#contact">Contact Us</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <div class="bgbanner" id="slider">
+                <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">                   
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">            
+                            <div class="carousel-caption">
+                                <div class="related-website-details">
+                                    <h3 data-wow-duration="1000ms" class="wow slideInLeft animated">Dance To The Beat</h3>
+                                    <p data-wow-duration="1000ms" class="wow slideInRight animated">Create the best moves for you</p>
+                                    <a href="#" data-wow-duration="500ms" class="wow slideInLeft animated site-btn">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="carousel-caption">
+                                <div class="related-website-details">
+                                    <h3 data-wow-duration="1000ms" class="wow slideInLeft animated">Be in the Spotlight</h3>
+                                    <p data-wow-duration="1000ms" class="wow slideInRight animated">Learn from the Best - Dance Professionals </p>
+                                    <a href="#" data-wow-duration="500ms" class="wow slideInLeft animated site-btn">View Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+                            <img src="/assets/FrontOffice/images/left-arrow.png" onmouseover="this.src = '/assets/FrontOffice/images/left-arrow-hover.png'" onmouseout="this.src = '/assets/FrontOffice/images/left-arrow.png'" alt="left">
+                            <span class="sr-only">Previous</span>
+                        </a>
+                        <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+                            <img src="/assets/FrontOffice/images/right-arrow.png" onmouseover="this.src = '/assets/FrontOffice/images/right-arrow-hover.png'" onmouseout="this.src = 'images/right-arrow.png'" alt="right">
+                        </a>
+                    </div>
+                </div>
+       
+                <section class="about" id="about">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                                <div class="about-content">
+                                    <h1>Event Management</h1>
+                                    <div class="add-edit-event" id="editEventForm">
+                                        <h2>{{ editingEvent ? 'Edit Event' : 'Add Event' }}</h2>
+                                        <form [formGroup]="EventForm" (ngSubmit)="editingEvent ? updateEvent() : addEvent()">
+                                            <div class="form-group">
+                                                <label for="eventName">Event Name</label>
+                                                <input type="text" id="eventName" formControlName="eventName" class="form-control" placeholder="Enter Event Name">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="venue">Venue</label>
+                                                <input type="text" id="venue" formControlName="venue" class="form-control" placeholder="Enter Venue">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="eventDate">Event Date</label>
+                                                <input type="date" id="eventDate" formControlName="eventDate" class="form-control" placeholder="Select Event Date">
+                                            </div>
+                                            <div class="buttons">
+                                                <button type="submit" class="btn btn-success">{{ editingEvent ? 'Edit' : 'Add' }}</button>
+                                                <button type="button" (click)="cancelEdit()" class="btn btn-secondary">Cancel</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    <!-- Event Search -->
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-sm-12 no-padding">
+                                <div class="about-image">
+                                    <img src="/assets/FrontOffice/images/about.jpg" class="img-fluid" alt="Event Management Image">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                
 
-<h1>Event Table</h1>
-<table class="table table-striped">
-  <thead>
-    <tr>
-      <th>Event Name</th>
-      <th>Venue</th>
-      <th>Event Date</th>
-      <th>Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let event of events">
-      <td>{{ event.EventName }}</td>
-      <td>{{ event.Venue }}</td>
-      <td>{{ event.EventDate }}</td>
-      <td>
-        <button (click) = "editEvent(event)" class=" btn btn-primary">Edit </button>
-      </td>    </tr>
-  </tbody>
-</table>
+  
 
-<h2>Add Event</h2>
-<form [formGroup]="EventForm" (ngSubmit)="editingEvent ? updateEvent() : addEvent()">
-  <div class="form-group">
-    <label for="EventName">Event Name:</label>
-    <input type="text" id="EventName" formControlName="EventName" class="form-control" placeholder="Enter event name">
-  </div>
-  <div class="form-group">
-    <label for="Venue">Venue:</label>
-    <input type="text" id="Venue" formControlName="Venue" class="form-control" placeholder="Enter venue">
-  </div>
-  <div class="form-group">
-    <label for="EventDate">Event Date:</label>
-    <input type="date" id="EventDate" formControlName="EventDate" class="form-control" placeholder="Select event date">
-  </div>
-  <!-- Add more form controls as needed -->
-  <button type="submit" class="btn btn-success">{{editingEvent ? 'Edit' : 'Add'}}</button>
-  <button type="button" (click)="cancelEdit()" class="btn btn-secondary">Cancel</button>
-</form>
+        <section class="gallery paddingTop-80" id="gallery">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="block-heading paddingbottom-80">
+                            <h2>Our Events </h2>
+                            <p>Don't Miss them </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="gallery-list">
+                        <div class="col-md-12 col-sm-12 col-xs-12">
+   
+                            <div class="form-group custom-search">
+                                <label for="eventName">Search by Event Name:</label>
+                                <input type="text" id="eventName" class="form-control custom-input" placeholder="Enter Event Name"
+                                       [(ngModel)]="eventName" (input)="searchEventsByEventName(eventName)">
+                            </div>
+                            <div class="form-group custom-search">
+                                <label for="eventDate">Search by Event Date:</label>
+                                <input type="date" id="eventDate" class="form-control custom-input"
+                                       [(ngModel)]="eventDate" (change)="searchEventsByEventDate(eventDate)">
+                            </div>
+                            
+                            
+                            <div class="tab-content">
+                                <div class="events-section">
+                                <div id="All" class="tab-pane fade in active">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let event of events">
+                                            <div class="event-item">
+                                                <h3>{{ event.eventName }}</h3>
+                                                <p>Venue: {{ event.venue }}</p>
+                                                <p>Date: {{ event.eventDate }}</p>
+                                                <div class="event-actions">
+                                                    <button (click)="editEvent(event)"  class="btn btn-edit">Edit</button>
+                                                    <button (click)="deleteEvent(event.eventId)" class="btn btn-delete">Delete</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                
+                                
+                                <div id="tango" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-6 no-padding width-100perc">
+                                            <div class="content">
+                                                <div class="content-overlay"></div>
+                                                <div class="gallery-img">
+                                                    <img src="/assets/FrontOffice/images/gallery3.jpg" alt="gallery" class="img-responsive">
+                                                </div>
+                                                <div class="content-details fadeIn-top fadeIn-right">
+                                                    <h3>Tango Ballroom</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Aenean suscipit faucibus.</p>
+                                                    <a class="example-image-link img-responsive" href="images/gallery3-3.jpg" data-lightbox="gallery"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-6 no-padding width-100perc">
+                                            <div class="content">
+                                                <div class="content-overlay"></div>
+                                                <div class="gallery-img">
+                                                    <img src="/assets/FrontOffice/images/gallery5.jpg" alt="gallery" class="img-responsive">
+                                                </div>
+                                                <div class="content-details fadeIn-top fadeIn-right">
+                                                    <h3>Tango Ballroom</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Aenean suscipit faucibus.</p>
+                                                    <a class="example-image-link img-responsive" href="images/gallery5-5.jpg" data-lightbox="gallery"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="acrobat" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-6 no-padding width-100perc">
+                                            <div class="content">
+                                                <div class="content-overlay"></div>
+                                                <div class="gallery-img">
+                                                    <img src="/assets/FrontOffice/images/gallery4.jpg" alt="gallery" class="img-responsive">
+                                                </div>
+                                                <div class="content-details fadeIn-top fadeIn-right">
+                                                    <h3>Acrobat</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Aenean suscipit faucibus.</p>
+                                                    <a class="example-image-link img-responsive" href="images/gallery4-4.jpg" data-lightbox="gallery"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-sm-4 col-xs-6 no-padding width-100perc">
+                                            <div class="content">
+                                                <div class="content-overlay"></div>
+                                                <div class="gallery-img">
+                                                    <img src="/assets/FrontOffice/images/gallery6.jpg" alt="gallery" class="img-responsive">
+                                                </div>
+                                                <div class="content-details fadeIn-top fadeIn-right">
+                                                    <h3>Acrobat</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Aenean suscipit faucibus.</p>
+                                                    <a class="example-image-link img-responsive" href="images/gallery6-6.jpg" data-lightbox="gallery"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="ballet" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-6 no-padding width-100perc">
+                                            <div class="content">
+                                                <div class="content-overlay"></div>
+                                                <div class="gallery-img">
+                                                    <img src="/assets/FrontOffice/images/gallery2.jpg" alt="gallery" class="img-responsive">
+                                                </div>
+                                                <div class="content-details fadeIn-top fadeIn-right">
+                                                    <h3>Ballet Ballerina</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Aenean suscipit faucibus.</p>
+                                                    <a class="example-image-link img-responsive" href="images/gallery2-2.jpg" data-lightbox="gallery"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="hip" class="tab-pane fade">
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-4 col-xs-6 no-padding width-100perc">
+                                            <div class="content">
+                                                <div class="content-overlay"></div>
+                                                <div class="gallery-img">
+                                                    <img src="/assets/FrontOffice/images/gallery1.jpg" alt="gallery" class="img-responsive">
+                                                </div>
+                                                <div class="content-details fadeIn-top fadeIn-right">
+                                                    <h3>Hip Hop</h3>
+                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit Aenean suscipit faucibus.</p>
+                                                    <a class="example-image-link img-responsive" href="images/gallery1-1.jpg" data-lightbox="gallery"><i class="fa fa-plus-circle" aria-hidden="true"></i></a>
+                                                </div> 
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
 
+
+          
+        <section class="contact paddingTop-80" id="contact">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xs-12 text-center">
+                        <div class="block-heading paddingbottom-80">
+                            <h2>Contact Us</h2>
+                            <p>Slave To The Rhythm</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 no-padding">
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101257.12284776446!2d-77.56330202084071!3d37.52477641775529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b111095799c9ed%3A0xbfd83e6de2423cc5!2sRichmond%2C+VA%2C+USA!5e0!3m2!1sen!2sin!4v1488891294599"  frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="contact-box">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 email-banner">
+                                    <div class="contact-list">
+                                        <h3>
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            Email
+                                        </h3>
+                                        <a href="mailto:demo@info.com">demo@info.com</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 bgcolor-red width-100">
+                                    <div class="contact-list">
+                                        <div class="left-box">
+                                            <h3>
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Address
+                                            </h3>
+                                            <p>701 Old York Drive</p>
+                                            <p>Richmond</p>
+                                            <p>USA.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 bgcolor-blue width-100">
+                                    <div class="contact-list">
+                                        <div class="right-box">
+                                            <h3>
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                Phone
+                                            </h3>
+                                            <a href="tel:+1-202-555-0100">Telephone : +1-202-555-0100</a>
+                                            <a href="tel:+1-202-555-0100">+1-202-555-0100</a>
+                                            <a href="tel:+1-202-555-0100">+1-202-555-0100</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="contact-banner">
+                        <div class="rain-css">
+                            <i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i>
+                        </div>
+                        <div class="container">
+                            <div class="contact-form">
+                                <form name="sentMessage" id="contactForm" method="get">
+                                    <div class="row">
+                                        <div class="contact-menu">
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <input type="text" id="name" class="form-control placeholder-fix" placeholder="Name" required="" aria-invalid="false">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="email" id="contact" class="form-control placeholder-fix" placeholder="Email" required="">
+                                                </div>
+                                                <div class="form-group">
+                                                    <input type="text" id="email" class="form-control placeholder-fix" placeholder="Phone Number" required="">
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                                <div class="form-group">
+                                                    <textarea name="message" id="message" class="form-control placeholder-fix" rows="5" placeholder="Message" required="" aria-invalid="false"></textarea>
+                                                    <p class="help-block text-danger"></p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12 col-sm-12 col-xs-12">
+                                                <div class="buttons text-center">
+                                                    <button type="reset" class="site-btn3">Clear</button>
+                                                    <button type="submit" class="site-btn3">Send Meassage</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="social-icons">
+                                    <ul class="social-icon-list">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-facebook"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-twitter"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-pinterest-p"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-dribbble"></i>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-google-plus"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+
+        </footer>
+        <script src="/assets/FrontOffice/js/wow.min.js"></script>
+        <script src="/assets/FrontOffice/js/mislider.js" type="text/javascript"></script>
+        <script>
+                                                var wow = new WOW({
+                                                    boxClass: 'wow',
+                                                    animateClass: 'animated',
+                                                    offset: 120,
+                                                    mobile: false,
+                                                    live: true
+                                                }
+                                                );
+                                                wow.init();
+        </script> 
+        <script type="text/javascript">
+            jQuery(function ($) {
+                var slider = $('.mis-stage').miSlider({
+                    stageHeight: 550,
+                    slidesOnStage: false,
+                    slidePosition: 'center',
+                    slideStart: 'mid',
+                    slideScaling: 550,
+                    offsetV: -5,
+                    centerV: true,
+                    navButtonsOpacity: 1,
+                    slideWidth: 700,
+                    slideHeight: 600,
+                });
+            });
+        </script>
+        <a id="back-to-top" class="scrollTop back-to-top" href="/assets/FrontOffice/javascript:void(0);" style="display: none;">
+            <i class="tv-bounce fa fa-angle-double-up"></i>
+        </a>
+</div>
+</header>
 </body>
-</html>
