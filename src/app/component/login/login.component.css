@@ -1,0 +1,139 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  
+  /* Login form styles */
+  .mat-card {
+    max-width: 400px;
+    margin: 100px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .mat-card-title {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  .mat-form-field {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .mat-card-actions {
+    text-align: end;
+  }
+  
+  /* Contact section styles */
+  .contact {
+    padding-top: 80px;
+    background-color: #f8f8f8;
+  }
+  
+  .contact-box {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-list {
+    margin-bottom: 20px;
+  }
+  
+  .contact-list h3 {
+    margin-bottom: 10px;
+  }
+  
+  .contact-list p {
+    margin-bottom: 5px;
+  }
+  
+  .contact-menu {
+    margin-top: 20px;
+  }
+  
+  /* Social icons */
+  .social-icons {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .social-icon-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .social-icon-list li {
+    display: inline-block;
+    margin-right: 10px;
+  }
+  
+  /* Google sign-in button */
+  .google-sign-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 50px;
+    background-color: #f44242;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .google-sign-in img {
+    width: 20px;
+    margin-right: 10px;
+  }
+  .box {
+    position: fixed;
+    top: 0;
+    transform: rotate(80deg); 
+    left: 0;
+  }
+  
+  .wave {
+    position: absolute;
+    opacity: .4;
+    width: 1500px;
+    height: 1300px;
+    margin-left: -150px;
+    margin-top: -250px;
+    border-radius: 43%;
+  }
+  @keyframes rotate {
+    from { transform: rotate(0deg); }
+    from { transform: rotate(360deg); }
+  }
+  .wave.-one {
+    animation: rotate 7000ms infinite linear;
+    opacity: .1;
+    background: red;
+  }
+  
+  .wave.-two {
+    animation: rotate 3000ms infinite linear;
+    opacity: .1;
+    background: black;
+  }
+  
+  .wave.-three {
+    animation: rotate 7500ms infinite linear;
+    background-color: #a72424;}
+ 

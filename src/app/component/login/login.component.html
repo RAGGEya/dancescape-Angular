@@ -1,0 +1,114 @@
+<div class="mt-100 me-auto ms-auto pb-5" style="width: 500px;">
+	<mat-card class="mat-elevation-z3">
+		<mat-card-title class="text-center ps-3 pt-5 pe-3">Login To Your Account</mat-card-title>
+
+		<mat-card-content class="p-4">
+			
+			<form [formGroup]="loginFormGroup" (ngSubmit)="handleLogin()">
+				<mat-form-field class="w-100 pb-2" appearance="outline">
+					<mat-label>Email</mat-label>
+					<input type="text" matInput formControlName="email" placeholder="Ex. johndoe@example.com">
+					<mat-error *ngIf="email.hasError('required')">
+						Email is <b>required</b>
+					</mat-error>
+					<mat-error *ngIf="email.hasError('email') || email.hasError('serverError')">
+						Please, enter a valid email address
+					</mat-error>
+				</mat-form-field>
+
+				<mat-form-field class="w-100 pb-2" appearance="outline">
+					<mat-label>Password</mat-label>
+					<input type="password" matInput formControlName="password" placeholder="*************">
+					<mat-error *ngIf="password.hasError('required')">
+						Password is <b>required</b>
+					</mat-error>
+					<mat-error *ngIf="password.hasError('minlength', 'maxlength')">
+						Password must be 6 to 32 characters long
+					</mat-error>
+					<mat-error *ngIf="password.hasError('serverError')">
+						Password has to be alpha numeric and must include uppercase, lowercase, and special characters
+					</mat-error>
+				</mat-form-field>
+
+				<a class="d-inline-block text-secondary text-decoration-none cursor-pointer mt-3" (click)="openForgotPasswordDialog($event)">
+					Forgot Password?
+				</a>
+
+				
+
+				<mat-card-actions align="end" style="margin-top: -35px; padding-right: 8px;">
+					<button mat-raised-button color="red" type="submit">Login</button>
+					
+				</mat-card-actions>
+			</form>
+		</mat-card-content>
+
+		<button class="btn btn-block google-sign-in" (click)="signInHandler()">
+			<img [src]="'assets/images/google.jpg'" alt="google" style="border-radius: 40%"/>
+			<span>Continue with Google</span>
+		  </button>
+		
+
+
+		
+		
+
+		<mat-card-footer *ngIf="submittingForm == true">
+			<mat-progress-bar mode="indeterminate"></mat-progress-bar>
+		</mat-card-footer>
+	</mat-card>
+</div>
+<div class='box'>
+	<div class='wave -one'></div>
+	<div class='wave -two'></div>
+	<div class='wave -three'></div>
+</div>
+<div class="row">
+                    <div class="col-md-6 col-sm-12 col-xs-12 no-padding">
+                        <div class="map">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d101257.12284776446!2d-77.56330202084071!3d37.52477641775529!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89b111095799c9ed%3A0xbfd83e6de2423cc5!2sRichmond%2C+VA%2C+USA!5e0!3m2!1sen!2sin!4v1488891294599"  frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12 col-xs-12">
+                        <div class="contact-box">
+                            <div class="row">
+                                <div class="col-md-12 col-sm-12 col-xs-12 email-banner">
+                                    <div class="contact-list">
+                                        <h3>
+                                            <i class="fa fa-envelope" aria-hidden="true"></i>
+                                            Email
+                                        </h3>
+                                        <a href="mailto:demo@info.com">demo@info.com</a>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 bgcolor-red width-100">
+                                    <div class="contact-list">
+                                        <div class="left-box">
+                                            <h3>
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                Address
+                                            </h3>
+                                            <p>701 Old York Drive</p>
+                                            <p>Richmond</p>
+                                            <p>USA.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6 col-xs-6 bgcolor-blue width-100">
+                                    <div class="contact-list">
+                                        <div class="right-box">
+                                            <h3>
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                Phone
+                                            </h3>
+                                            <a href="tel:+1-202-555-0100">Telephone : +1-202-555-0100</a>
+                                            <a href="tel:+1-202-555-0100">+1-202-555-0100</a>
+                                            <a href="tel:+1-202-555-0100">+1-202-555-0100</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
