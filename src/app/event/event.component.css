@@ -8,7 +8,7 @@
     line-height: 1.5;
     transition: all 0.3s ease;
     position: relative;
-    filter: blur(5px); /* Apply blur effect to the entire box */
+    filter: blur(1px); /* Apply blur effect to the entire box */
 }
 
 .event-item h3 {
@@ -61,7 +61,7 @@
 /* Style for the edit button */
 .btn-edit {
     background-color: rgba(255, 255, 255, 0.9); /* Off-white color */
-    color: black; /* Green color for text */
+    color: rgb(0, 0, 0); /* Green color for text */
     border: none;
 }
 
@@ -165,4 +165,116 @@
 .about-image img {
     border-radius: 8px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.sort-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-top: 20px;
+  }
+  
+  .form-select {
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease; /* Add transition for border color change */
+  }
+  
+  .form-select:focus {
+    border-color: #007bff; /* Change border color when combobox is focused */
+  }
+  
+  .btn-primary {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Add transition for background color change */
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+
+
+  }
+
+
+  .form-select.focused {
+    /* Animation styles when focused */
+    border-color: #007bff; /* Change border color when focused */
+    transition: border-color 0.3s ease; /* Smooth transition for the border color change */
+  }
+
+  .form-select {
+    /* Your existing styles */
+    transition: border-color 0.3s ease; /* Smooth transition for the border color change */
+  }
+  
+
+
+.container {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .custom-select {
+    width: 200px;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    background-color: #f8f8f8;
+    cursor: pointer;
+  }
+ 
+  /* Define font styles */
+.your-font {
+    font-family: 'Raleway', sans-serif;
+    /* Add other font properties like font-size, font-weight, etc. */
+}
+
+.bold-heading {
+    font-weight: bold;
+}
+
+/* Apply font styles to elements */
+#about h1.bold-heading {
+    font-family:Roboto, sans-serif;
+    font-weight: bold;
+}
+
+#about label.your-font {
+    font-family: 'Raleway', sans-serif;
+    /* Add other font properties like font-size, font-weight, etc. */
+}
+.custom-search {
+    margin-bottom: 15px; /* Add some spacing between search boxes */
+}
+
+.custom-search label {
+    font-family: 'Raleway', sans-serif; /* Change font family */
+    font-weight: normal; /* Remove bold */
+    font-size: 16px; /* Adjust font size */
+}
+
+.custom-input {
+    font-family: 'Raleway', sans-serif; /* Change font family */
+    font-size: 14px; /* Adjust font size */
+    padding: 8px; /* Adjust padding for input */
+    width: 250px; /* Adjust width of input */
+    border-radius: 4px; /* Add border radius */
+    border: 1px solid #ccc; /* Add border */
+}
+
+.custom-input:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #007bff; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); /* Add box shadow on focus */
 }

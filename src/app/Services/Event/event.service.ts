@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, OnInit } from '@angular/core';
 import { Observable, catchError, tap } from 'rxjs';
+import { ApiResponse } from 'src/app/Models/api-response';
 import { Event } from 'src/app/Models/event';
+import { Page } from 'src/app/Models/page';
 
 
 @Injectable({
@@ -52,6 +54,17 @@ export class EventService  {
   }
 
 
+  getEventsWithPagination(offset: number, pageSize: number): Observable<Page<Event>> {
+    return this.http.get<Page<Event>>(`${this.baseUrl}pagination/${offset}/${pageSize}`);
+  }
+  getEventsWithSorting(field: string): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.baseUrl}sorting/${field}`);
+  }
+
+  getEventsWithPaginationAndSort(offset: number, pageSize: number, field: string): Observable<Event[]> {
+    return this.http.get<Event[]>(`${this.baseUrl}paginationAndSorting/${offset}/${pageSize}/${field}`);
+  }
+  
   
   }
 

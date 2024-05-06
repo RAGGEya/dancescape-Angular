@@ -14,10 +14,13 @@ export class DanceCategoryComponent implements OnInit {
   editingCategory: DanceCategory | null = null;
   categoryForm: FormGroup;
 
+
+
   constructor(private fb: FormBuilder, private danceCategoryService: DanceCategoryService) {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required],
-      dcDescription: ['', Validators.required]
+      dcDescription: ['', Validators.required],
+   
     });
   }
 
@@ -52,9 +55,18 @@ export class DanceCategoryComponent implements OnInit {
   }
 
   deleteCategory(categoryId: number): void {
-    this.danceCategoryService.deleteCategory(categoryId).subscribe(() => {
-      this.loadCategories();
-    });
+    const categoryToDelete = this.danceCategories.find(category => category.categorieId === categoryId);
+    if (!categoryToDelete) {
+      return;
+    }
+    const confirmation = confirm(`Are you sure you want to delete the dance category "${categoryToDelete.categoryName}"?`);
+    if (confirmation) {
+      
+      this.danceCategoryService.deleteCategory(categoryId).subscribe(() => {
+        this.loadCategories();
+        alert(`The dance category "${categoryToDelete.categoryName}" has been deleted.`);
+      });
+    }
   }
 
   updateCategory(): void {

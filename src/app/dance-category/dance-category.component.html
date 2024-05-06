@@ -93,7 +93,7 @@
                             <div class="col-md-6 col-sm-12 col-xs-12">
                                 <div class="about-para padding20">
 
-                
+                                    <div class="about-content">
                                     <h1>Dance Category Management</h1>
                                     <div class="add-edit-event" id="editEventForm">
                                         <h2>{{ editingCategory ? 'Edit Dance Categorie' : 'Add Dance Categorie' }}</h2>
@@ -114,6 +114,7 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
                             <div class="col-md-6 col-sm-12 col-xs-12 no-padding">
                                 <div class="about-image">
                                     <img src="/assets/FrontOffice/images/about.jpg" class="img-responsive" alt="Event Management Image">
@@ -135,12 +136,12 @@
                         </div>
                         <div class="row">
                             <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let category of danceCategories">
-                                <div class="category-item">
+                                <div class="category-item" id="editEventForm">
                                     <h3>{{ category.categoryName }}</h3>
                                     <p>{{ category.dcDescription }}</p>
                                     <div class="category-actions">
-                                        <button (click)="editCategory(category)" class="btn btn-primary">Edit</button>
-                                        <button (click)="deleteCategory(category.categorieId)" class="btn btn-danger">Delete</button>
+                                      <button (click)="editCategory(category)" class="btn btn-primary">Edit</button>
+                                      <button (click)="deleteCategory(category.categorieId)" class="btn btn-danger">Delete</button>
                                     </div>
                                 </div>
                             </div>

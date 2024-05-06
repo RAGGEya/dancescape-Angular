@@ -94,20 +94,20 @@
                         <div class="row">
                             <div class="col-md-6 col-sm-12">
                                 <div class="about-content">
-                                    <h1>Event Management</h1>
+                                    <h1 class="bold-heading">Event Management</h1>
                                     <div class="add-edit-event" id="editEventForm">
                                         <h2>{{ editingEvent ? 'Edit Event' : 'Add Event' }}</h2>
                                         <form [formGroup]="EventForm" (ngSubmit)="editingEvent ? updateEvent() : addEvent()">
                                             <div class="form-group">
-                                                <label for="eventName">Event Name</label>
+                                                <label for="eventName" class="your-font">Event Name</label>
                                                 <input type="text" id="eventName" formControlName="eventName" class="form-control" placeholder="Enter Event Name">
                                             </div>
                                             <div class="form-group">
-                                                <label for="venue">Venue</label>
+                                                <label for="venue" class="your-font">Venue</label>
                                                 <input type="text" id="venue" formControlName="venue" class="form-control" placeholder="Enter Venue">
                                             </div>
                                             <div class="form-group">
-                                                <label for="eventDate">Event Date</label>
+                                                <label for="eventDate" class="your-font">Event Date</label>
                                                 <input type="date" id="eventDate" formControlName="eventDate" class="form-control" placeholder="Select Event Date">
                                             </div>
                                             <div class="buttons">
@@ -158,12 +158,30 @@
                             </div>
                             
                             
+                            <div class="sort-container">
+                                <select #selectBox class="form-select" (change)="sortByField(selectBox.value)" 
+                                (focus)="onFocus()" (blur)="onBlur()" >
+                                <option value="" disabled selected>Filter by</option>
+                                  <option value="eventName"> Event Name</option>
+                                  <option value="eventDate"> Event Date</option>
+                                  <option value="venue"> Venue</option>
+                                </select>
+                               
+                              </div>
+
                             <div class="tab-content">
                                 <div class="events-section">
                                 <div id="All" class="tab-pane fade in active">
+                                    
                                     <div class="row">
+   
+                            
+  
+  
                                         <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let event of events">
+                                            
                                             <div class="event-item">
+
                                                 <h3>{{ event.eventName }}</h3>
                                                 <p>Venue: {{ event.venue }}</p>
                                                 <p>Date: {{ event.eventDate }}</p>
@@ -172,8 +190,18 @@
                                                     <button (click)="deleteEvent(event.eventId)" class="btn btn-delete">Delete</button>
                                                 </div>
                                             </div>
+
                                         </div>
+                                        <div class="rain-css">
+                                            <i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i><i class="rain"></i>
+                                        </div>
+                                        <div>
+                                            <button (click)="prevPage()">Previous</button>
+                                            <button (click)="nextPage()">Next</button>
+                                          </div>
                                     </div>
+                               
+                     
                                 </div>
                             </div>
                                 
@@ -441,7 +469,22 @@
                     slideHeight: 600,
                 });
             });
+
+
         </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
+    const sortSelect = document.querySelector('.form-select');
+
+    sortSelect.addEventListener('focus', function() {
+      sortSelect.classList.add('focused');
+    });
+
+    sortSelect.addEventListener('blur', function() {
+      sortSelect.classList.remove('focused');
+    });
+  });
+</script>
         <a id="back-to-top" class="scrollTop back-to-top" href="/assets/FrontOffice/javascript:void(0);" style="display: none;">
             <i class="tv-bounce fa fa-angle-double-up"></i>
         </a>

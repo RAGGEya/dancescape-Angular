@@ -1,15 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EventService } from '../Services/Event/event.service';
 import { Event } from '../Models/event';
+import { ApiResponse } from '../Models/api-response';
+import { Page } from '../Models/page';
+import { animate, style, transition, trigger } from '@angular/animations';
 
 
 
 @Component({
   selector: 'app-event',
   templateUrl: './event.component.html',
-  styleUrls: ['./event.component.css']
+  styleUrls: ['./event.component.css'],
+  animations: [
+    trigger('slideInOut', [
+      transition(':enter', [
+        style({ transform: 'translateX(-100%)' }),
+        animate('300ms ease-in', style({ transform: 'translateX(0%)' }))
+      ]),
+      transition(':leave', [
+        animate('300ms ease-in', style({ transform: 'translateX(-100%)' }))
+      ])
+    ])
+  ]
 })
+
 export class EventComponent implements OnInit {
   
   eventName!: string;
@@ -21,6 +36,10 @@ export class EventComponent implements OnInit {
  editingEvent : Event | null = null;
 
   EventForm: FormGroup; 
+  currentPage: number = 2;
+  pageSize: number = 6;
+  totalEvents: number = 0; // Initially set to 0
+  totalPages: number = 0;
   constructor(private fb: FormBuilder,private eventService: EventService) {
    
     this.EventForm = this.fb.group({
@@ -37,6 +56,7 @@ loadEvents() : void{
     (events: Event[]) => {
       this.events = events;
     });
+    
 }
 
 
@@ -72,14 +92,19 @@ ngOnInit() : void{
 
 
  deleteEvent(EventId: number): void {
-  this.eventService.deleteEvent(EventId).subscribe(
-    () : void => {
-      this.loadEvents();
-      alert("Event  deleted !");
-
-    }
- 
-  );
+  const eventToDelete = this.events.find(event => event.eventId === EventId);
+  if (!eventToDelete) {
+    return;
+  }
+  const confirmation = confirm(`Are you sure you want to delete the event "${eventToDelete.eventName}"?`);
+  if (confirmation) {
+    this.eventService.deleteEvent(EventId).subscribe(
+      () : void => {
+        this.loadEvents();
+        alert(`The event "${eventToDelete.eventName}" has been deleted.`);
+      }
+    );
+  }
 }
 
 
@@ -162,13 +187,55 @@ searchEvents() {
   };}
 
 
-
-  
-
-  
+  sortByField(field: string): void {
+    this.eventService.getEventsWithSorting(field).subscribe(
+      (events: Event[]) => {
+        this.events = events;
+      },
+      (error) => {
+        console.error('Error sorting events:', error);
+      }
+    );
   }
-    
 
 
+   prevPage(): void {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.loadEventsWithPagination();
+    }
+  }
 
+  nextPage(): void {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.loadEventsWithPagination();
+    }
+  }
 
+  loadEventsWithPagination(): void {
+    const offset = 0;
+    this.eventService.getEventsWithPagination(offset, this.pageSize)
+      .subscribe(
+        (page: any) => {
+          this.events = page.content;
+          this.totalEvents = page.totalElements;
+          this.totalPages = Math.ceil(this.totalEvents / this.pageSize); // Calculate total pages dynamically
+        },
+        (error) => {
+          console.error('Error fetching events:', error);
+        }
+      );
+  }
+
+  @ViewChild('selectBox') selectBox: any;
+
+  onFocus(): void {
+    this.selectBox.nativeElement.classList.add('focused');
+  }
+
+  onBlur(): void {
+    this.selectBox.nativeElement.classList.remove('focused');
+  }
+
+}
