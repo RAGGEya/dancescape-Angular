@@ -5,6 +5,7 @@ import { Event } from '../Models/event';
 import { ApiResponse } from '../Models/api-response';
 import { Page } from '../Models/page';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { UserService } from '../Services/user.service';
 
 
 
@@ -39,8 +40,10 @@ export class EventComponent implements OnInit {
   currentPage: number = 2;
   pageSize: number = 6;
   totalEvents: number = 0; // Initially set to 0
-  totalPages: number = 0;
-  constructor(private fb: FormBuilder,private eventService: EventService) {
+  totalPages: any;
+  p: number = 1;
+  itemsPerPage: number = 6;
+  constructor(private fb: FormBuilder,private eventService: EventService,private userService: UserService) {
    
     this.EventForm = this.fb.group({
       eventName: ['', Validators.required],
@@ -55,6 +58,7 @@ loadEvents() : void{
   this.eventService.findAllEvents().subscribe(
     (events: Event[]) => {
       this.events = events;
+      this.totalPages = events.length;
     });
     
 }
@@ -77,10 +81,21 @@ if (this.EventForm.valid) {
 alert("Event not added !");
 }}
 
-
 ngOnInit() : void{
   this.loadEvents();
+  const authToken = this.userService.getAuthToken();
+
+if (authToken) {  // This ensures authToken is not null
+  const decodedToken = this.userService.getDecodedToken(authToken);
+  console.log(decodedToken);
+} else {
+  console.log('No auth token found');
+}
+
+ 
   }
+  
+  
 
 
  cancelEdit() : void{
@@ -92,6 +107,7 @@ ngOnInit() : void{
 
 
  deleteEvent(EventId: number): void {
+  
   const eventToDelete = this.events.find(event => event.eventId === EventId);
   if (!eventToDelete) {
     return;

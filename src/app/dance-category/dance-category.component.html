@@ -122,6 +122,13 @@
                             </div>
                         </div>
                     </div>
+         
+                    
+          
+                    <hr />
+       
+      
+    
                 </section>
                 
                 <section class="gallery paddingTop-80" id="gallery">
@@ -135,7 +142,7 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let category of danceCategories">
+                            <div class="col-md-4 col-sm-4 col-xs-12" *ngFor="let category of danceCategories | paginate: { itemsPerPage: itemsPerPage, currentPage: p}">
                                 <div class="category-item" id="editEventForm">
                                     <h3>{{ category.categoryName }}</h3>
                                     <p>{{ category.dcDescription }}</p>
@@ -144,6 +151,12 @@
                                       <button (click)="deleteCategory(category.categorieId)" class="btn btn-danger">Delete</button>
                                     </div>
                                 </div>
+   
+                            </div>
+                        </div>
+                        <div class="pagination-container">
+                            <div class="pagination-controls">
+                                <pagination-controls (pageChange)="p = $event"></pagination-controls>
                             </div>
                         </div>
                     </div>
@@ -175,7 +188,7 @@
                                             <i class="fa fa-envelope" aria-hidden="true"></i>
                                             Email
                                         </h3>
-                                        <a href="mailto:demo@info.com">demo@info.com</a>
+                                        <a href="DanceScape@gmail.com">DanceScape@gmail.com</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 col-sm-6 col-xs-6 bgcolor-red width-100">

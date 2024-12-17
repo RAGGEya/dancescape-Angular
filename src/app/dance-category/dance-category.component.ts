@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DanceCategoryService } from '../Services/dance-category.service';
 import { DanceCategory } from '../Models/dance-category';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-dance-category',
@@ -13,10 +14,11 @@ export class DanceCategoryComponent implements OnInit {
   danceCategories: DanceCategory[] = [];
   editingCategory: DanceCategory | null = null;
   categoryForm: FormGroup;
+  totalPages: any;
+  p: number = 1;
+  itemsPerPage: number = 3;
 
-
-
-  constructor(private fb: FormBuilder, private danceCategoryService: DanceCategoryService) {
+  constructor(private fb: FormBuilder, private danceCategoryService: DanceCategoryService,private http : HttpClient) {
     this.categoryForm = this.fb.group({
       categoryName: ['', Validators.required],
       dcDescription: ['', Validators.required],
@@ -28,6 +30,7 @@ export class DanceCategoryComponent implements OnInit {
     this.danceCategoryService.findAllDanceCat().subscribe(
       (categories: DanceCategory[]) => {
         this.danceCategories = categories;
+        this.totalPages= categories;
       }
     );
   }
@@ -99,4 +102,8 @@ export class DanceCategoryComponent implements OnInit {
         editForm.scrollIntoView({ behavior: 'smooth' });
     }
   }
+  
+
+  //Gets called when the user selects an image
+ 
 }

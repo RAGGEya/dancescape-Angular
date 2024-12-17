@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class EmailServiceService {
-  private url : string = 'http://localhost:8081/DanceScape/email/'
+  private url : string = 'http://localhost:8089/DanceScape/email/'
 
 
 

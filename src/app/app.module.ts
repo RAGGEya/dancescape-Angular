@@ -17,6 +17,12 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { EmailSenderComponent } from './email-sender/email-sender.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { BackEventComponent } from './back-event/back-event.component';
+import { BackDanceCatComponent } from './back-dance-cat/back-dance-cat.component';
+import { FrontComponent } from './front/front.component';
+import { SignupComponent } from './signup/signup.component';
+import { ProfilComponent } from './profile/profil.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +35,15 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterBackComponent,
     EventComponent,
     DanceCategoryComponent,
-    EmailSenderComponent
+    EmailSenderComponent,
+    BackEventComponent,
+    BackDanceCatComponent,
+    FrontComponent,
+    SignupComponent,
+    ProfilComponent,
+    
+   
+
   ],
   imports: [
     BrowserModule,
@@ -37,7 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule, 
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

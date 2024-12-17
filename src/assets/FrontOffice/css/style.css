@@ -113,8 +113,9 @@ h1,h2,h3,h4,h5,h6, .navbar-brand, .gallery-list .nav-tabs{
     padding: 20px;
 }
 #carousel-example-generic{
-    background: rgba(0, 0, 0, 0) url("../images/banner.jpg") no-repeat scroll center top / cover ;
-    height: 800px;
+    background: rgba(0, 0, 0, 0) url("../images/logo.jpg") no-repeat scroll center top / cover ;
+    background-color: #000;
+    height: 500px;
     position: relative;
 }
 .navbar {

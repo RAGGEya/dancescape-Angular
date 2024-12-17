@@ -7,7 +7,7 @@ import { DanceCategory } from '../Models/dance-category';
   providedIn: 'root'
 })
 export class DanceCategoryService {
-  private baseUrl : string = 'http://localhost:8081/DanceScape/Crud/DanceCat/'
+  private baseUrl : string = 'http://localhost:8089/DanceScape/Crud/DanceCat/'
 
   constructor(private http : HttpClient) { }
 

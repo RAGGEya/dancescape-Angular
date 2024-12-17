@@ -10,7 +10,7 @@ import { Page } from 'src/app/Models/page';
   providedIn: 'root'
 })
 export class EventService  {
-  private baseUrl : string = 'http://localhost:8081/DanceScape/Crud/Event/'
+  private baseUrl : string = 'http://localhost:8089/DanceScape/Crud/Event/'
 
 
 
